@@ -1,0 +1,39 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="start center" color="primary">
+  <div class="row">
+    <button (click)="normalCompile()" class="btn btn-success">Code Compiler</button>
+    <button (click)="doExercise(1)" class="btn btn-primary">Exercise 1</button>
+    <button (click)="doExercise(2)" class="btn btn-primary">Exercise 2</button>
+  </div>
+  <span fxFlex></span>
+  <h2 style="font-size: 15px;">made with <span [style.color]="'red'">&#10084;</span> by Materia Team</h2>
+</mat-toolbar>
+<div style="margin-top: 20px;" fxLayout="column" fxLayoutAlign="center center">
+  <h2 class="mat-h2">Java/C# IDE</h2>
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Theme" (selectionChange)="setTheme($event.value)" [value]="theme" >
+        <mat-option *ngFor="let t of themes;" [value]="t">{{t}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select (selectionChange)="setLanguage($event.value)" placeholder="Language" [value]="language">
+        <mat-option *ngFor="let t of languages;" [value]="t">{{t}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<div class="row">
+  <div class="col-6">
+    <mat-card class="p-0 m-0" style="height: 500px; flex: 1; display: flex; flex-direction: column;">
+      <ngx-monaco-editor class="p-0 m-0" [(ngModel)]="codeText" [options]="options">
+      </ngx-monaco-editor>
+      <button class="btn btn-outline-primary align-items-center" (click)="compile()">Compile</button>
+    </mat-card>
+  </div>
+  <div class="col-6">
+    <mat-card class="bg-dark m-0 text-primary" style="height: 500px; flex: 1; display: flex; flex-direction: column;">
+      <p *ngFor="let output of outputs ">{{output}}</p>
+    </mat-card>
+  </div>
+</div>
